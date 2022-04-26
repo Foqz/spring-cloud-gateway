@@ -1,4 +1,4 @@
-package com.fikskamil.springcloudgateway.routing;
+package com.fikskamil.springcloudgateway.routing.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

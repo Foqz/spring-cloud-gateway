@@ -12,13 +12,13 @@ import static org.assertj.core.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = {"httbin=http://localhost:${wiremock.server.port}"})
 @AutoConfigureWireMock(port = 0)
-class RoutingTest {
+class RoutingConfigurationTest {
 
     @Autowired
     private WebTestClient webTestClient;
 
     @Test
-    public void contextLoads() throws Exception {
+    public void testRouteLocator() throws Exception {
         //Stubs
         stubFor(get(urlEqualTo("/get"))
                 .willReturn(aResponse()

@@ -1,4 +1,4 @@
-package com.fikskamil.springcloudgateway.routing;
+package com.fikskamil.springcloudgateway.routing.configuration;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -8,16 +8,16 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableConfigurationProperties(HttpBinConfigProps.class)
-public class Routing {
+public class RoutingConfiguration {
 
     private final HttpBinConfigProps httpBinConfigProps;
 
-    public Routing(HttpBinConfigProps httpBinConfigProps) {
+    public RoutingConfiguration(HttpBinConfigProps httpBinConfigProps) {
         this.httpBinConfigProps = httpBinConfigProps;
     }
 
     @Bean
-    public RouteLocator myRoutes(RouteLocatorBuilder builder) {
+    public RouteLocator routeLocator(RouteLocatorBuilder builder) {
         String httpUri = httpBinConfigProps.getHttpbin();
         return builder.routes()
                 .route(p -> p
