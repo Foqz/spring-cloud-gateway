@@ -7,30 +7,36 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableConfigurationProperties(HttpBinConfigProps.class)
+@EnableConfigurationProperties(UriProperties.class)
 public class RoutingConfiguration {
 
-    private final HttpBinConfigProps httpBinConfigProps;
+    private final UriProperties uriProperties;
 
-    public RoutingConfiguration(HttpBinConfigProps httpBinConfigProps) {
-        this.httpBinConfigProps = httpBinConfigProps;
+    public RoutingConfiguration(UriProperties uriProperties) {
+        this.uriProperties = uriProperties;
     }
 
     @Bean
     public RouteLocator routeLocator(RouteLocatorBuilder builder) {
-        String httpUri = httpBinConfigProps.getHttpbin();
+        String targetServiceUri = uriProperties.getTargetServiceUri();
         return builder.routes()
+                //httpBin example from enhance headers
                 .route(p -> p
                         .path("/get")
                         .filters(gatewayFilterSpec -> gatewayFilterSpec.
                                 addRequestHeader("Hello", "World"))
-                        .uri(httpUri))
+                        .uri(uriProperties.getHttpBin()))
+                //httpBin circuit breaker example ex. timeout
                 .route(p -> p
                         .host("*.circuitbreaker.com")
                         .filters(f -> f.circuitBreaker(config -> config
                                 .setName("mycmd")
                                 .setFallbackUri("forward:/fallback")))
-                        .uri(httpUri))
+                        .uri(uriProperties.getHttpBin()))
+                //custom filter example (could be used in access-management)
+                .route(predicateSpec -> predicateSpec
+                        .path("/**")
+                        .uri(targetServiceUri))
                 .build();
     }
 }
