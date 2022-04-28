@@ -5,3 +5,20 @@ logging:
     level:
       org.springframework.cloud.gateway: DEBUG
       reactor.netty.http.client: DEBUG
+      org.springframework.security: DEBUG
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8090/auth/realms/core
+        registration:
+          keycloak:
+            client-id: access-management
+            client-secret: e39dc054-20f2-4507-8058-193bf61c9ead
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8090/auth/realms/core/protocol/openid-connect/certs
+  main:
+    allow-bean-definition-overriding: true
