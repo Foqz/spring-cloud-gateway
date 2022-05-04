@@ -20,5 +20,3 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://localhost:8090/auth/realms/core/protocol/openid-connect/certs
-  main:
-    allow-bean-definition-overriding: true
