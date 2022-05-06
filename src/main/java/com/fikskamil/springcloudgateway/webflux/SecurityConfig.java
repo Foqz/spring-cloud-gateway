@@ -1,5 +1,6 @@
 package com.fikskamil.springcloudgateway.webflux;
 
+import com.fikskamil.springcloudgateway.webflux.errorhandler.CustomServerAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -13,9 +14,11 @@ public class SecurityConfig {
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http
                 .authorizeExchange()
-                .anyExchange().authenticated()
+                .anyExchange()
+                .authenticated()
                 .and()
                 .oauth2ResourceServer()
+                .authenticationEntryPoint(new CustomServerAuthenticationEntryPoint())
                 .jwt();
         http.csrf().disable();
         return http.build();
