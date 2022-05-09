@@ -2,6 +2,7 @@ package com.fikskamil.springcloudgateway.security.configuration;
 
 import com.fikskamil.springcloudgateway.security.authorization.CustomReactiveAuthorizationManager;
 import com.fikskamil.springcloudgateway.security.authentication.CustomServerAuthenticationEntryPoint;
+import com.fikskamil.springcloudgateway.security.authorization.CustomServerAccessDeniedHandler;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +24,9 @@ public class SecurityConfig {
                 .authorizeExchange()
                 .anyExchange()
                 .access(customReactiveAuthorizationManager)
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler(new CustomServerAccessDeniedHandler())
                 .and()
                 .oauth2ResourceServer()
                 .authenticationEntryPoint(new CustomServerAuthenticationEntryPoint())

@@ -18,7 +18,7 @@ public class CustomServerAuthenticationEntryPoint implements ServerAuthenticatio
         return Mono.defer(() -> Mono.just(exchange.getResponse()))
                 .flatMap(response -> {
                     response.setStatusCode(HttpStatus.UNAUTHORIZED);
-                    String body = HttpStatus.UNAUTHORIZED.toString();
+                    String body = ex.getMessage();
                     DataBuffer buffer = response.bufferFactory().wrap(body.getBytes(StandardCharsets.UTF_8));
                     return response.writeWith(Mono.just(buffer))
                             .doOnError(error -> DataBufferUtils.release(buffer));
