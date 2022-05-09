@@ -13,8 +13,7 @@ import reactor.core.publisher.Mono;
 public class LoggingGlobalPreFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        //We could implement authorization and authentication here
-        log.info("Hello from pre filter");
+        log.info("Pre Filter");
         return chain.filter(exchange)
                 .then(Mono.fromRunnable(() -> {
                     log.info("Hello from post filter");

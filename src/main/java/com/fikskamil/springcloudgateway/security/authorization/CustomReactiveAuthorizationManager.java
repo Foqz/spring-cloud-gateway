@@ -5,6 +5,8 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fikskamil.springcloudgateway.security.opa.OpaAuthorizationService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -22,8 +24,10 @@ import java.util.Optional;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class CustomReactiveAuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext> {
     private final ObjectMapper objectMapper = new ObjectMapper();
+    private final OpaAuthorizationService opaAuthorizationService;
 
     @Override
     public Mono<AuthorizationDecision> check(Mono<Authentication> authentication, AuthorizationContext authorizationContext) {
@@ -53,9 +57,9 @@ public class CustomReactiveAuthorizationManager implements ReactiveAuthorization
         log.info(path);
         log.info(decodedToken.toString());
 
-        // TODO implement opa voter here
-
-        return new AuthorizationDecision(true);
+        boolean result = opaAuthorizationService.checkRestEndpointAuthorization(method, path, decodedToken);
+        log.debug("Request {} {} got OPA vote {}", method, path, result);
+        return result ? new AuthorizationDecision(true) : new AuthorizationDecision(false);
     }
 
     private JsonNode decodeTokenToJsonNode(JwtAuthenticationToken jwtAuthenticationToken) throws JsonProcessingException {

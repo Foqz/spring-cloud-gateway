@@ -20,3 +20,6 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: http://localhost:8090/auth/realms/core/protocol/openid-connect/certs
+opa:
+  data:
+    rest-endpoint: http://localhost:8181/v1/data/rest/allow
