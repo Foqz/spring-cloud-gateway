@@ -18,6 +18,8 @@ ext {
 
 dependencies {
 	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+	// https://mvnrepository.com/artifact/com.auth0/java-jwt
+	implementation 'com.auth0:java-jwt:3.19.2'
 	implementation 'org.projectlombok:lombok:1.18.24'
 	implementation("org.springframework.cloud:spring-cloud-starter-gateway")
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:2.6.7'
