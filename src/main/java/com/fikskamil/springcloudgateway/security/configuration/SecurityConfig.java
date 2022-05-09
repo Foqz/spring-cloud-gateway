@@ -1,7 +1,7 @@
-package com.fikskamil.springcloudgateway.webflux;
+package com.fikskamil.springcloudgateway.security.configuration;
 
-import com.fikskamil.springcloudgateway.webflux.authorization.CustomReactiveAuthorizationManager;
-import com.fikskamil.springcloudgateway.webflux.errorhandler.CustomServerAuthenticationEntryPoint;
+import com.fikskamil.springcloudgateway.security.authorization.CustomReactiveAuthorizationManager;
+import com.fikskamil.springcloudgateway.security.authentication.CustomServerAuthenticationEntryPoint;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

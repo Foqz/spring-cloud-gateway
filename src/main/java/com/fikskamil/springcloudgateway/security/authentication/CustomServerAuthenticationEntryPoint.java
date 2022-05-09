@@ -1,4 +1,4 @@
-package com.fikskamil.springcloudgateway.webflux.errorhandler;
+package com.fikskamil.springcloudgateway.security.authentication;
 
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferUtils;

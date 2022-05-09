@@ -1,4 +1,4 @@
-package com.fikskamil.springcloudgateway.routing;
+package com.fikskamil.springcloudgateway.routing.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

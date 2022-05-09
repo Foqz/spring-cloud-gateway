@@ -1,4 +1,4 @@
-package com.fikskamil.springcloudgateway.webflux;
+package com.fikskamil.springcloudgateway.security.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.CorsRegistry;

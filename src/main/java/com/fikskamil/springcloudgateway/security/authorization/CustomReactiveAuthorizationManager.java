@@ -1,4 +1,4 @@
-package com.fikskamil.springcloudgateway.webflux.authorization;
+package com.fikskamil.springcloudgateway.security.authorization;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
