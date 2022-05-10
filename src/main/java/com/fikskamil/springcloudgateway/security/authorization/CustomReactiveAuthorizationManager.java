@@ -53,10 +53,6 @@ public class CustomReactiveAuthorizationManager implements ReactiveAuthorization
             return new AuthorizationDecision(false);
         }
 
-        log.info(method);
-        log.info(path);
-        log.info(decodedToken.toString());
-
         boolean result = opaAuthorizationService.checkRestEndpointAuthorization(method, path, decodedToken);
         log.debug("Request {} {} got OPA vote {}", method, path, result);
         return result ? new AuthorizationDecision(true) : new AuthorizationDecision(false);

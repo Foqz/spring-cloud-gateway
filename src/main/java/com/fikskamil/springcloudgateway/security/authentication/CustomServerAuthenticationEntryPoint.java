@@ -19,8 +19,11 @@ public class CustomServerAuthenticationEntryPoint implements ServerAuthenticatio
                 .flatMap(response -> {
                     response.setStatusCode(HttpStatus.UNAUTHORIZED);
                     String body = ex.getMessage();
-                    DataBuffer buffer = response.bufferFactory().wrap(body.getBytes(StandardCharsets.UTF_8));
-                    return response.writeWith(Mono.just(buffer))
+                    DataBuffer buffer = response
+                            .bufferFactory()
+                            .wrap(body.getBytes(StandardCharsets.UTF_8));
+                    return response
+                            .writeWith(Mono.just(buffer))
                             .doOnError(error -> DataBufferUtils.release(buffer));
                 });
     }

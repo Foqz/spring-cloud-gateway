@@ -28,8 +28,11 @@ public class CustomServerAccessDeniedHandler implements ServerAccessDeniedHandle
                     ServerHttpResponse response = exchange.getResponse();
                     response.setStatusCode(HttpStatus.FORBIDDEN);
                     String body = accessDeniedException.getMessage();
-                    DataBuffer buffer = response.bufferFactory().wrap(body.getBytes(StandardCharsets.UTF_8));
-                    return response.writeWith(Mono.just(buffer))
+                    DataBuffer buffer = response
+                            .bufferFactory()
+                            .wrap(body.getBytes(StandardCharsets.UTF_8));
+                    return response
+                            .writeWith(Mono.just(buffer))
                             .doOnError(error -> DataBufferUtils.release(buffer));
                 });
     }
