@@ -32,7 +32,7 @@ public class RoutingConfiguration {
                         .filters(f -> f.circuitBreaker(config -> config
                                 .setFallbackUri("forward:/fallback")))
                         .uri(uriProperties.getHttpBin()))
-                //custom filter example (could be used in access-management)
+                //route everything to target service uri
                 .route(predicateSpec -> predicateSpec
                         .path("/**")
                         .uri(targetServiceUri))

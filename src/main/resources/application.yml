@@ -1,6 +1,6 @@
 server:
     port: 8085
-target-service-uri: "${TARGET_SERVICE_URI:http://localhost:8082}"
+target-service-uri: "${TARGET_SERVICE_URI:http://httpbin.org:80}"
 logging:
     level:
       org.springframework.cloud.gateway: DEBUG
