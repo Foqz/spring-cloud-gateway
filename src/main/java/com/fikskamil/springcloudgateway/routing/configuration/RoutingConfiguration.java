@@ -30,7 +30,6 @@ public class RoutingConfiguration {
                 .route(p -> p
                         .host("*.circuitbreaker.com")
                         .filters(f -> f.circuitBreaker(config -> config
-                                .setName("mycmd")
                                 .setFallbackUri("forward:/fallback")))
                         .uri(uriProperties.getHttpBin()))
                 //custom filter example (could be used in access-management)

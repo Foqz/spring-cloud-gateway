@@ -15,8 +15,8 @@ spring:
             issuer-uri: http://localhost:8090/auth/realms/core
         registration:
           keycloak:
-            client-id: access-management
-            client-secret: e39dc054-20f2-4507-8058-193bf61c9ead
+            client-id: access-client
+            client-secret: 7gKVZjLweVxIg1fe22x1xQUdyd0AT6OW
       resourceserver:
         jwt:
           jwk-set-uri: http://localhost:8090/auth/realms/core/protocol/openid-connect/certs
