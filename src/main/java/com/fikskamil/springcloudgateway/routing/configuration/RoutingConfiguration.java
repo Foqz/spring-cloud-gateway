@@ -21,13 +21,13 @@ public class RoutingConfiguration {
         String targetServiceUri = uriProperties.getTargetServiceUri();
         return builder.routes()
                 //httpBin example from enhance headers
-                .route(p -> p
+                .route(predicateSpec -> predicateSpec
                         .path("/get")
                         .filters(gatewayFilterSpec -> gatewayFilterSpec.
                                 addRequestHeader("Hello", "World"))
                         .uri(uriProperties.getHttpBin()))
                 //httpBin circuit breaker example ex. timeout
-                .route(p -> p
+                .route(predicateSpec -> predicateSpec
                         .host("*.circuitbreaker.com")
                         .filters(f -> f.circuitBreaker(config -> config
                                 .setFallbackUri("forward:/fallback")))
