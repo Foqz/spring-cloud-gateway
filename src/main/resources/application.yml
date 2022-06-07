@@ -1,6 +1,6 @@
 server:
     port: 8085
-target-service-uri: "${TARGET_SERVICE_URI:http://httpbin.org:80}"
+target-service-uri: ${TARGET_SERVICE_URI:http://httpbin.org:80}
 logging:
     level:
       org.springframework.cloud.gateway: DEBUG
@@ -12,14 +12,14 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: http://localhost:8090/auth/realms/core
+            issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8090/auth/realms/core}
         registration:
           keycloak:
-            client-id: access-client
-            client-secret: 7gKVZjLweVxIg1fe22x1xQUdyd0AT6OW
+            client-id: ${KEYCLOAK_CLIENT_ID:access-client}
+            client-secret: ${KEYCLOAK_CLIENT_SECRET:7gKVZjLweVxIg1fe22x1xQUdyd0AT6OW}
       resourceserver:
         jwt:
-          jwk-set-uri: http://localhost:8090/auth/realms/core/protocol/openid-connect/certs
+          jwk-set-uri: ${JWT_URI:http://localhost:8090/auth/realms/core/protocol/openid-connect/certs}
 opa:
   data:
-    rest-endpoint: http://localhost:8181/v1/data/rest/allow
+    rest-endpoint: ${OPA_DATA_REST_ENDPOINT:http://localhost:8181/v1/data/rest/allow}
