@@ -20,7 +20,7 @@ public class OpaAuthorizationService {
                                                   JsonNode token) {
         var input = new OpaRestAuthorizationInput(method, opaPathConverter.convert(path), token);
         var requestBody = new OpaAuthorizationDto(input);
-        var responseDto = authenticationClient.findRestEndpointAuthentication(requestBody);
+        var responseDto = authenticationClient.authorizeRequestInOpa(requestBody);
         return responseDto.result() != null && responseDto.result();
     }
 }

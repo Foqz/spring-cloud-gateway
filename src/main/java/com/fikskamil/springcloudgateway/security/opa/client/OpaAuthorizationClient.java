@@ -13,7 +13,7 @@ public class OpaAuthorizationClient {
     private final OpaDataConfiguration configuration;
     private final RestTemplate restTemplate;
 
-    public OpaResponseDto findRestEndpointAuthentication(OpaAuthorizationDto authenticationDto) {
+    public OpaResponseDto authorizeRequestInOpa(OpaAuthorizationDto authenticationDto) {
         return restTemplate.postForObject(configuration.getRestEndpoint(), authenticationDto, OpaResponseDto.class);
     }
 }
