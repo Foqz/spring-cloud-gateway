@@ -10,13 +10,14 @@ import reactor.core.publisher.Mono;
 
 @Component
 @Slf4j
-public class LoggingGlobalPreFilter implements GlobalFilter, Ordered {
+public class LoggingGlobalFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         //could implement enchanting of request here
+        log.info("Hello from pre request");
         return chain.filter(exchange)
                 .then(Mono.fromRunnable(() -> {
-                    log.info("Hello from post filter");
+                    log.info("Hello from post request");
                 }));
     }
 

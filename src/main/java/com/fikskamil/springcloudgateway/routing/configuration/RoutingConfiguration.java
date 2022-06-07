@@ -26,12 +26,6 @@ public class RoutingConfiguration {
                         .filters(gatewayFilterSpec -> gatewayFilterSpec.
                                 addRequestHeader("Hello", "World"))
                         .uri(uriProperties.getHttpBin()))
-                //httpBin circuit breaker example ex. timeout
-                .route(predicateSpec -> predicateSpec
-                        .host("*.circuitbreaker.com")
-                        .filters(f -> f.circuitBreaker(config -> config
-                                .setFallbackUri("forward:/fallback")))
-                        .uri(uriProperties.getHttpBin()))
                 //route everything to target service uri
                 .route(predicateSpec -> predicateSpec
                         .path("/**")
